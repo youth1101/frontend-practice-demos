@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>太阳系行星数据表</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <table border="1">
+        <colgroup>
+            <col span="2">
+            <!-- span="2" 表示 “选中前 2 列”（大类列 + 子类列） -->
+            <col style="border: 2px solid black">
+            <!-- 选中表格第3列，给 “名字列”整列加 2px 黑色实线边框，正好实现你最终效果图里 “名字列粗线分隔” 的核心视觉效果，不用给每个名字单元格单独加边框 -->
+            <col span="10">
+            <!-- span="10" 表示 “选中接下来的 10 列”（第 4 列到第 13 列：图片、质量、直径、备注等） -->
+        </colgroup>
+        <thead>
+            <tr>
+                <th colspan="2"></th>
+                <th scope="col">名字</th>
+                <!-- 写scope="col"能直观告诉自己/其他开发者：“这个<th>是列的表头，不是行的表头”（行表头用scope="row"）；-->
+                <th scope="col">图片</th>
+                <th scope="col">质量 (10<sup>24</sup>kg)</th>
+                <th scope="col">直径 (km)</th>
+                <th scope="col">密度 (kg/m<sup>3</sup>)</th>
+                <th scope="col">重力 (m/s<sup>2</sup>)</th>
+                <th scope="col">天长 (hours)</th>
+                <th scope="col">与太阳距离 (10<sup>6</sup>km)</th>
+                <th scope="col">平均温度 (°C)</th>
+                <th scope="col">卫星数量</th>
+                <th scope="col">备注</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td rowspan="4" colspan="2">类地行星</td>
+                <td>水星</td>
+                <td><img src="https://roy-tian.github.io/learning-area/html/tables/assessment-finished/images/mercury.jpg"
+                        alt=""></td>
+                <td>0.330</td>
+                <td>4879</td>
+                <td>5427</td>
+                <td>3.7</td>
+                <td>4222.6</td>
+                <td>57.9</td>
+                <td>167</td>
+                <td>0</td>
+                <td>距离太阳最近</td>
+            </tr>
+            <tr>
+                <td>金星</td>
+                <td><img src="https://roy-tian.github.io/learning-area/html/tables/assessment-finished/images/venus.jpg"
+                        alt=""></td>
+                <td>4.87</td>
+                <td>12104</td>
+                <td>5243</td>
+                <td>8.9</td>
+                <td>2802.0</td>
+                <td>108.2</td>
+                <td>464</td>
+                <td>0</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>地球</td>
+                <td><img src="https://roy-tian.github.io/learning-area/html/tables/assessment-finished/images/venus.jpg"
+                        alt=""></td>
+                <td>5.97</td>
+                <td>12759</td>
+                <td>5514</td>
+                <td>9.8</td>
+                <td>24.0</td>
+                <td>149.6</td>
+                <td>15</td>
+                <td>1</td>
+                <td>我们的世界</td>
+            </tr>
+            <tr>
+                <td>火星</td>
+                <td><img src="https://roy-tian.github.io/learning-area/html/tables/assessment-finished/images/venus.jpg"
+                        alt=""></td>
+                <td>0.642</td>
+                <td>6792</td>
+                <td>3933</td>
+                <td>3.7</td>
+                <td>24.7</td>
+                <td>27.9</td>
+                <td>-65</td>
+                <td>2</td>
+                <td>红色星球</td>
+            </tr>
+            <tr>
+                <td rowspan="4">类木行星</td>
+                <td rowspan="2">气巨星</td>
+                <td>木星</td>
+                <td><img src="https://roy-tian.github.io/learning-area/html/tables/assessment-finished/images/venus.jpg"
+                        alt=""></td>
+                <td>1898</td>
+                <td>142984</td>
+                <td>1326</td>
+                <td>23.1</td>
+                <td>9.9</td>
+                <td>778.6</td>
+                <td>-110</td>
+                <td>67</td>
+                <td>太阳系最大</td>
+            </tr>
+            <tr>
+                <td>土星</td>
+                <td><img src="https://roy-tian.github.io/learning-area/html/tables/assessment-finished/images/venus.jpg"
+                        alt=""></td>
+                <td>568</td>
+                <td>120536</td>
+                <td>687</td>
+                <td>9.0</td>
+                <td>10.7</td>
+                <td>1433.5</td>
+                <td>-140</td>
+                <td>62</td>
+                <td>我们的世界</td>
+            </tr>
+            <tr>
+                <td rowspan="2">冰巨星</td>
+                <td>天王星</td>
+                <td><img src="https://roy-tian.github.io/learning-area/html/tables/assessment-finished/images/venus.jpg"
+                        alt=""></td>
+                <td>86.8</td>
+                <td>51118</td>
+                <td>1271</td>
+                <td>8.7</td>
+                <td>17.2</td>
+                <td>2872.5</td>
+                <td>-195</td>
+                <td>27</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>海王星</td>
+                <td><img src="https://roy-tian.github.io/learning-area/html/tables/assessment-finished/images/venus.jpg"
+                        alt=""></td>
+                <td>102</td>
+                <td>49528</td>
+                <td>1638</td>
+                <td>11.0</td>
+                <td>16.1</td>
+                <td>4495.1</td>
+                <td>-200</td>
+                <td>14</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td colspan="2">矮行星</td>
+                <td>冥王星</td>
+                <td><img src="https://roy-tian.github.io/learning-area/html/tables/assessment-finished/images/mercury.jpg"
+                        alt=""></td>
+                <td>0.0146</td>
+                <td>2370</td>
+                <td>2095</td>
+                <td>0.7</td>
+                <td>153.3</td>
+                <td>5906.4</td>
+                <td>-225</td>
+                <td>5</td>
+                <td>2006年降格，但<a
+                        href="https://www.usatoday.com/story/tech/2014/10/02/pluto-planet-solar-system/16578959/">尚存争议</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+
+</html>
