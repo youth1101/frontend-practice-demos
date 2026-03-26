@@ -45,29 +45,33 @@
       <button class="end">结束</button>
     </div>
     <script>
-        // 创建一个数组负责存储数据
+      // 创建一个数组负责存储数据
       const arr = [
         "typeof null的结果是什么?为什么?",
         "type of和instanceof有什么区别?",
         "如何判断JavaScript变量是数组?",
         "什么是Vue中的slot，它有什么作用?",
       ];
-    //   获取元素
+      //   获取元素
       const content = document.querySelector(".content");
       const start = document.querySelector(".start");
       const end = document.querySelector(".end");
-    //   设置全局变量
+      //   设置全局变量
       let timerId;
       let random;
-    //   点击开始按钮
+      //   点击开始按钮
       start.addEventListener("click", function () {
         // 随机显示数组中的内容
         timerId = setInterval(function () {
           random = parseInt(Math.random() * arr.length);
           content.innerHTML = arr[random];
         }, 50);
+        // 由于会删除本轮中的元素，防止下一次出现，这段代码可以防止出现undefined的情况
+        if (arr.length === 1) {
+          start.disabled = end.disabled = true;
+        }
       });
-    //   点击停止
+      //   点击停止
       end.addEventListener("click", function () {
         clearInterval(timerId);
         // 删除元素，确保不会出现重复的现象
