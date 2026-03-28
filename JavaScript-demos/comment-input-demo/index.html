@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>评论输入框字数统计与聚焦失焦交互实战练习</title>
+    <title>评论输入框实战练习</title>
   </head>
   <style>
     /* 外层容器样式，用于包裹输入框、按钮和字数统计 */
@@ -115,30 +115,64 @@
       <!-- 字数统计显示：初始为 0/200字 -->
       <span class="total">0/200字</span>
     </div>
-
+    <div class="list">
+      <div class="item" style="display: none">
+        <div class="info">
+          <p class="name">清风徐来</p>
+          <p class="text">大家都辛苦啦，感谢up的努力</p>
+          <p class="time">2022-10-10 20:29:21</p>
+        </div>
+      </div>
+    </div>
     <script>
+      // 获取当前时间，用于评论发布时间
+      const nowTime = new Date();
       // 获取输入框元素（通过 id 选择器）
-      const tx = document.querySelector('#tx')
+      const tx = document.querySelector("#tx");
       // 获取字数统计元素（通过类选择器）
-      const total = document.querySelector('.total')
+      const total = document.querySelector(".total");
+      // 获取评论项元素（预留结构）
+      const item = document.querySelector(".item");
+      // 获取评论文本元素（预留结构）
+      const text = document.querySelector(".text");
+      // 获取评论时间元素（预留结构）
+      const time = document.querySelector(".time");
 
       // 监听输入框的「聚焦事件」（用户点击输入框时触发）
-      tx.addEventListener('focus',function(){
-          // 显示字数统计：将透明度设为 1（平滑过渡）
-          total.style.opacity = 1
-      })
+      tx.addEventListener("focus", function () {
+        // 显示字数统计：将透明度设为 1（平滑过渡）
+        total.style.opacity = 1;
+      });
 
       // 监听输入框的「失焦事件」（用户点击输入框外部时触发）
-      tx.addEventListener('blur',function(){
-          // 隐藏字数统计：将透明度设为 0（平滑过渡）
-          total.style.opacity = 0
-      })
+      tx.addEventListener("blur", function () {
+        // 隐藏字数统计：将透明度设为 0（平滑过渡）
+        total.style.opacity = 0;
+      });
 
       // 监听输入框的「输入事件」（用户输入/删除文字时实时触发）
-      tx.addEventListener('input',function(){
-          // 实时更新字数统计：获取输入框内容长度，拼接为「当前字数/200字」
-          total.innerHTML = `${tx.value.length}/200字`
-      })
+      tx.addEventListener("input", function () {
+        // 实时更新字数统计：获取输入框内容长度，拼接为「当前字数/200字」
+        total.innerHTML = `${tx.value.length}/200字`;
+      });
+
+      // 监听输入框的「键盘抬起事件」（用于检测回车键发布评论）
+      tx.addEventListener("keyup", function (e) {
+        // 判断按下的键是否为回车键
+        if (e.key === "Enter") {
+          // 检查输入框内容是否不为空（去除首尾空格）
+          if (tx.value.trim() !== "") {
+            // 显示评论项
+            item.style.display = "block";
+            // 更新评论文本内容
+            text.innerHTML = tx.value;
+            // 更新评论发布时间
+            time.innerHTML = nowTime.toLocaleString();
+          }
+          // 清空输入框内容
+          tx.value = "";
+        }
+      });
     </script>
   </body>
 </html>
