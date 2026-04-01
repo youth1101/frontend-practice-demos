@@ -1,0 +1,35 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.box {
+  display: flex;
+  width: 700px;
+  height: 300px;
+  border-left: 1px solid pink;
+  border-bottom: 1px solid pink;
+  margin: 50px auto;
+  justify-content: space-around;
+  align-items: flex-end;
+  text-align: center;
+}
+
+.box>div {
+  display: flex;
+  width: 50px;
+  background-color: pink;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.box div span {
+
+  margin-top: -20px;
+}
+
+.box div h4 {
+  margin-bottom: -35px;
+  width: 70px;
+  margin-left: -10px;
+}
