@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JavaScript Date时间对象+定时器+补零逻辑 动态倒计时实战练习</title>
+  <style>
+    .countdown {
+      width: 240px;
+      height: 305px;
+      text-align: center;
+      line-height: 1;
+      color: #fff;
+      background-color: brown;
+      overflow: hidden;
+    }
+
+    .countdown .title {
+      font-size: 25px;
+    }
+
+    .countdown .tips {
+      margin-top: 80px;
+      font-size: 23px;
+    }
+
+    .countdown small {
+      font-size: 17px;
+    }
+
+    .countdown .clock {
+      width: 142px;
+      margin: 18px auto 0;
+      overflow: hidden;
+    }
+
+    .countdown .clock span,
+    .countdown .clock i {
+      display: block;
+      text-align: center;
+      line-height: 34px;
+      font-size: 23px;
+      float: left;
+    }
+
+    .countdown .clock span {
+      width: 34px;
+      height: 34px;
+      border-radius: 2px;
+      background-color: #303430;
+    }
+
+    .countdown .clock i {
+      width: 20px;
+      font-style: normal;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="countdown">
+    <p class="title">放学倒计时</p>
+    <p class="clock">
+      <span id="hour">00</span>
+      <i>:</i>
+      <span id="minutes">00</span>
+      <i>:</i>
+      <span id="second">00</span>
+    </p>
+    <p class="tips">17:30:00下课</p>
+  </div>
+  <script>
+    // 1. 获取元素
+    const hour = document.querySelector('#hour');
+    const minutes = document.querySelector('#minutes');
+    const second = document.querySelector('#second'); 
+    const targetTime = +new Date('2026-4-1 17:30:00'); // 目标时间戳
+
+    // 2. 封装倒计时函数
+    function updateCountdown() {
+      const now = +new Date(); // 当前时间戳
+      const count = (targetTime - now) / 1000; // 剩余总秒数
+
+      if (count <= 0) {
+        // 时间到了停止定时器
+        clearInterval(timer);
+        hour.innerHTML = '00';
+        minutes.innerHTML = '00';
+        second.innerHTML = '00';
+        return;
+      }
+
+      // 计算时分秒
+      let h = parseInt(count / 60 / 60 % 24);
+      let m = parseInt(count / 60 % 60);
+      let s = parseInt(count % 60);
+
+      // 补零函数
+      const padZero = n => n < 10 ? '0' + n : n;
+
+      // 赋值给 DOM
+      hour.innerHTML = padZero(h);
+      minutes.innerHTML = padZero(m);
+      second.innerHTML = padZero(s);
+    }
+
+    // 3. 先调用一次，避免页面空白
+    updateCountdown();
+
+    // 4. 开启定时器，每秒更新一次
+    const timer = setInterval(updateCountdown, 1000);
+  </script>
+</body>
+
+</html>
