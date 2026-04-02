@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>倒计时自动跳转</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f5f5f5;
+        }
+        .countdown {
+            font-size: 24px;
+            color: #333;
+        }
+        .countdown span {
+            color: #ff4d4f;
+            font-weight: bold;
+            font-size: 32px;
+        }
+    </style>
+</head>
+<body>
+    <div class="countdown">
+        登录成功，<span id="num">5</span> 秒后自动跳转...
+    </div>
+
+    <script>
+        let num = 5;
+        const numSpan = document.getElementById('num');
+        
+        // 立即显示初始值
+        numSpan.textContent = num;
+
+        const timerId = setInterval(function() {
+            num--;
+            numSpan.textContent = num; // 更新页面显示
+
+            if (num === 0) {
+                clearInterval(timerId); // 必须传入 timerId
+                location.href = 'https://www.itheima.com';
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
