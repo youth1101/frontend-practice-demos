@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>学生信息管理</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    a {
+      text-decoration: none;
+      color: #721c24;
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+      margin: 20px 0;
+    }
+    table {
+      margin: 0 auto;
+      width: 800px;
+      border-collapse: collapse;
+      color: #004085;
+    }
+    th {
+      padding: 10px;
+      background: #cfe5ff;
+
+      font-size: 20px;
+      font-weight: 400;
+    }
+    td,
+    th {
+      border: 1px solid #b8daff;
+    }
+    td {
+      padding: 10px;
+      color: #666;
+      text-align: center;
+      font-size: 16px;
+    }
+    tbody tr {
+      background: #fff;
+    }
+    tbody tr:hover {
+      background: #e1ecf8;
+    }
+    .info {
+      width: 900px;
+      margin: 50px auto;
+      text-align: center;
+    }
+    .info input,
+    .info select {
+      width: 80px;
+      height: 27px;
+      outline: none;
+      border-radius: 5px;
+      border: 1px solid #b8daff;
+      padding-left: 5px;
+      box-sizing: border-box;
+      margin-right: 15px;
+    }
+    .info button {
+      width: 60px;
+      height: 27px;
+      background-color: #004085;
+      outline: none;
+      border: 0;
+      color: #fff;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    .info .age {
+      width: 50px;
+    }
+  </style>
+  <body>
+    <h1>新增学员</h1>
+    <form class="info" autocomplete="off">
+      姓名：<input type="text" class="uname" name="uname" /> 
+      年龄：<input type="text" class="age" name="age" />
+      性别:
+      <select name="gender" class="gender">
+        <option value="男">男</option>
+        <option value="女">女</option>
+      </select>
+      薪资：<input type="text" class="salary" name="salary" /> 
+      就业城市：<select name="city" class="city">
+        <option value="北京">北京</option>
+        <option value="上海">上海</option>
+        <option value="广州">广州</option>
+        <option value="深圳">深圳</option>
+        <option value="曹县">曹县</option>
+      </select>
+      <button class="add">录入</button>
+    </form>
+
+    <h1>就业榜</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>学号</th>
+          <th>姓名</th>
+          <th>年龄</th>
+          <th>性别</th>
+          <th>薪资</th>
+          <th>就业城市</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+    <script>
+        // 声明一个空数组，无论是增加还是删除都是对这个数组的操作
+        const arr = []
+        // 获取元素
+        const uname = document.querySelector('.uname')
+        const age = document.querySelector('.age')
+        const gender = document.querySelector('.gender')
+        const salary = document.querySelector('.salary')
+        const city = document.querySelector('.city')
+        const info = document.querySelector('.info')
+        const tbody = document.querySelector('tbody')
+        // 获取所有带有name属性的元素
+        const items = document.querySelectorAll('[name]')
+        // 添加数据的操作
+        info.addEventListener('submit',function(e){
+            // 阻止submit的默认跳转行为，因为我们是把数据渲染到表格，而不是提交到某个地址
+            e.preventDefault()
+            // 先进行非空判断，如果为空则不需要创建对象
+            for(let i =0;i<items.length;i++){
+                if(items[i]===''){
+                    return alert("输入内容不为空")
+                }
+            }
+            // 创建新的对象
+            const obj = {
+                stuId:arr.length+1,
+                uname:uname.value,
+                age:age.value,
+                gender:gender.value,
+                salary:salary.value,
+                city:city.value
+            }
+            // 将数据追加到数组里面
+            arr.push(obj)
+            // 之后重置表单
+            this.reset()
+            // 调用渲染函数
+            render()
+        })
+        // 将数据渲染到表格的函数
+        function render(){
+            // 先清空一下表格的数据，然后在从头重新渲染数组中的数据
+            tbody.innerHTML = ''
+            for(let i = 0;i<arr.length;i++){
+                // 生成tr
+                const tr = document.createElement('tr')
+                tr.innerHTML = `
+                    <td>${arr[i].stuId}</td>
+                    <td>${arr[i].uname}</td>
+                    <td>${arr[i].age}</td>
+                    <td>${arr[i].gender}</td>
+                    <td>${arr[i].salary}</td>
+                    <td>${arr[i].city}</td>
+                    <td>
+                        <a href="javascript:" data-id="${i}">删除</a>
+                    </td>
+                `
+                // 追加tr的父元素tbody
+                tbody.appendChild(tr)
+            }
+        }
+        // 删除数据的操作
+        tbody.addEventListener('click',function(e){
+            if(e.target.tagName === 'A'){
+                // 删除数组中对应的数据
+                arr.splice(e.target.dataset.id,1)
+                // 之后在重新渲染一遍数据到表格
+                render()
+            }
+        })
+    </script>
+  </body>
+</html>
